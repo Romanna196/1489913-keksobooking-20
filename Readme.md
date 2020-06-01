@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анна Романова](https://up.htmlacademy.ru/javascript/20/user/1489913).
-* Наставник: [Татьяна :) Осадчук] (https://htmlacademy.ru/profile/tanyachuk)
+* Наставник: [Татьяна :) Осадчук](https://up.htmlacademy.ru/javascript/20/user/595543).
 
 ---
 
