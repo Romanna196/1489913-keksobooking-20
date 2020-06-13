@@ -1,7 +1,5 @@
-'use strict';
-
-var ads = [];
-var ADS = 8;
+var newArray = [];
+var ADVERTS = 8;
 var AVATARS = ['img/avatars/user01.png', 'img/avatars/user02.png', 'img/avatars/user03.png', 'img/avatars/user04.png', 'img/avatars/user05.png', 'img/avatars/user06.png', 'img/avatars/user07.png', 'img/avatars/user08.png'];
 var TITLES = ['Предложение 1, Предложение 2, Предложение 3, Предложение 4'];
 var PRICE_MIN = 1000;
@@ -20,6 +18,7 @@ var MIN_Y = 130;
 var MAX_Y = 630;
 var PIN_WIDTH = 45;
 var PIN_HEIGHT = 45;
+var TEMPLATES = document.querySelector('#pin').content.querySelector('.map__pin');
 
   var getRandomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -31,9 +30,9 @@ var getRandomArray = function (arr) {
     }
     return randomArray;
   };
-  var Ads = function () {
-    for (var j = 0; j < ADS; j++) {
-      ads[j] = {
+  var adverts = function () {
+    for (var j = 0; j < ADVERTS; j++) {
+      newArray[j] = {
           author: {
             avatar: AVATARS[j]
           },
@@ -55,22 +54,28 @@ var getRandomArray = function (arr) {
             y: getRandomNumber(MIN_Y, MAX_Y)
           }
         }
-      }
-  };
-Ads();
+    }
+};
+adverts();
 
 document.querySelector('.map').classList.remove('map--faded');
 var mapPins = document.querySelector('.map__pins');
 var renderPin = function (pin) {
-  var newPin = document.querySelector('.pin').content.cloneNode(true);
+  var newPin = TEMPLATES.cloneNode(true);
   newPin.style.left = pin.location.x - PIN_WIDTH / 2 + 'px';
   newPin.style.top = pin.location.y - PIN_HEIGHT + 'px';
   newPin.querySelector('img').src = pin.author.avatar;
   newPin.querySelector('img').alt = pin.offer.title;
   return newPin;
 };
-var fragment = document.createDocumentFragment();
-for (var k = 1; k <= ADS; k++) {
-  ads.push(Ads(k));
-}
-mapPins.appendChild(fragment);
+var renderFragmentElement = function () {
+  var fragment = document.createDocumentFragment();
+
+  for (var k = 0; k < newArray.length; k++) {
+    fragment.appendChild(renderPin(newArray[k]));
+  }
+
+  mapPins.appendChild(fragment);
+};
+
+renderFragmentElement();
